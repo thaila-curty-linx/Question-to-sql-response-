@@ -1,4 +1,5 @@
 # Question-to-sql-response
+
 ### 1. **Introdução**
 
 - **Descrição**: Essa aplicação utiliza tecnologia text2sql para extrair insights valiosos dos dados disponíveis para uma analise rápida e precisa.
@@ -7,57 +8,53 @@
 
 ### 2. **Instalação e Configuração**
 
-1. Instale as dependecias do projeto
-   
+2.2. Instale as dependecias do projeto
+
 (Antes verifique se pnpm e node estão instalados na maquina)
 
 ```jsx
 pnpm i
 ```
 
-2. Crie um arquivo .env e preenche-o (Use o .env.exemplo como exemplo para ser seguido)
-3. Rode o codigo
+2.2. Crie um arquivo .env e preenche-o (Use o .env.exemplo como exemplo para ser seguido)
+2.3. Rode o codigo
 
 ```jsx
 pnpm dev
 ```
 
-1. Faça uma requisição POST para a rota /questiontosqlresponse, passando a pergunta no corpo  como "question".
+2.4. Faça uma requisição POST para a rota /questiontosqlresponse, passando a pergunta no corpo como "question".
 
 ### 3. **API Reference**
 
 - **Descrição das Funções/Métodos**: Para cada função ou método, inclua:
-    - Nome: Question to sql response
-    - Descrição: A partir de uma pergunta gera uma consulta SQL, realiza a consulta no banco e retorna resposta do bot, consulta Sql , resultado da consulta e a pergunta do usuario.
-    - Rota: /questiontosqlresponse
-    - Método: Post
-    - Parâmetros(body) : question(tipo string)
-    
-    ```jsx
-    {
-    	question:string
-    }
-    ```
-    
-    - Retorno: (tipo e significado)
-    
-    ```jsx
-    {
-    	userQuestion: string;
-      sqlQuery: string;
-      sqlResult: JSON;
-      botAnswerMessage: string;
-      }
-    ```
-    
+  - Nome: Question to sql response
+  - Descrição: A partir de uma pergunta gera uma consulta SQL, realiza a consulta no banco e retorna resposta do bot, consulta Sql , resultado da consulta e a pergunta do usuario.
+  - Rota: /questiontosqlresponse
+  - Método: Post
+  - Parâmetros(body) : question(tipo string)
+  ```jsx
+  {
+    question: string;
+  }
+  ```
+  - Retorno: (tipo e significado)
+  ```jsx
+  {
+    userQuestion: string;
+    sqlQuery: string;
+    sqlResult: JSON;
+    botAnswerMessage: string;
+  }
+  ```
 
 ### 4. **Estrutura de Código**
 
-**4.1. Repositórios:** 
+**4.1. Repositórios:**
 
 - DatabaseQueryRepository:
-    - runQuery:  executa uma consulta SQL e retorna o resultado da consulta.
-    - getDatabase: inicializa e configurar o banco de dados e retorna o banco de dados inicializado.
+  - runQuery: executa uma consulta SQL e retorna o resultado da consulta.
+  - getDatabase: inicializa e configurar o banco de dados e retorna o banco de dados inicializado.
 
 ```jsx
 export interface IDatabaseQueryRepository {
@@ -67,9 +64,9 @@ export interface IDatabaseQueryRepository {
 ```
 
 - LangChainRepository:
-    - createSqlQuery: gera uma consulta SQL de acordo com a pergunta do usuário.
-    - getSqlQueryResult: executa uma consulta no banco de dados.
-    - generateSqlResultMessage: Gera uma resposta a partir da pergunta do usuário e do resultado da consulta SQL usando Api do OpenAI
+  - createSqlQuery: gera uma consulta SQL de acordo com a pergunta do usuário.
+  - getSqlQueryResult: executa uma consulta no banco de dados.
+  - generateSqlResultMessage: Gera uma resposta a partir da pergunta do usuário e do resultado da consulta SQL usando Api do OpenAI
 
 ```jsx
 export interface ILLMRepository {
@@ -89,7 +86,7 @@ export interface ILLMRepository {
 **4.2. Service (caso de uso):**
 
 - QuestionToSqlResponseService:
-    - execute: A partir da pergunta do usuário, é gerada uma resposta baseada no resultado da consulta SQL e na pergunta do usuário.
+  - execute: A partir da pergunta do usuário, é gerada uma resposta baseada no resultado da consulta SQL e na pergunta do usuário.
 
 ```jsx
 QuestionToSqlResponseService({userQuestion,sqlQuery,sqlResult,botAnswerMessage}:QuestionToSqlResponseServiceResponse):Promise<QuestionToSqlResponseServiceResponse>
@@ -106,7 +103,7 @@ interface QuestionToSqlResponseServiceResponse {
 ### 5. **Testes**
 
 - **Instruções de Teste**:
-    - Rode:
+  - Rode:
 
 ```jsx
 pnpm test
