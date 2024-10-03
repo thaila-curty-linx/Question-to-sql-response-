@@ -8,14 +8,15 @@
 ### 2. **Instalação e Configuração**
 
 1. Instale as dependecias do projeto
-(Instale pnpm)
+   
+(Antes verifique se pnpm e node estão instalados na maquina)
 
 ```jsx
 pnpm i
 ```
 
-1. Crie um arquivo .env e preenche-o (Use o .env.exemplo como exemplo para ser seguido)
-2. Rode o codigo
+2. Crie um arquivo .env e preenche-o (Use o .env.exemplo como exemplo para ser seguido)
+3. Rode o codigo
 
 ```jsx
 pnpm dev
