@@ -48,8 +48,12 @@ export class LangChainRepository implements ILLMRepository {
     });
     const sqlQuery = await chain.invoke({
       question,
-      top_k: 2,
-      table_info: "northwind",
+      top_k: 1,
+      table_info: (
+        await this.databaseQueryRepository.getDatabase()
+      ).allTables.map(
+        (table) => `Table:${table.tableName}\n Columns:${table.columns} \n\n`
+      ),
     });
 
     return sqlQuery;
